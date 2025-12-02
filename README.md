@@ -56,8 +56,7 @@ Reconstruct the **Z boson** in the dimuon decay channel (Z → μ⁺μ⁻) using
 
 ### Expected Result
 
-![Z boson peak](https://cms-opendata-workshop.github.io/workshop2022-lesson-cpp-root-python/fig/dimuon_spectrum.png)
-*The dimuon invariant mass spectrum showing the Z boson peak*
+The dimuon invariant mass spectrum should show a clear **Z boson peak at ~91 GeV**.
 
 ---
 
