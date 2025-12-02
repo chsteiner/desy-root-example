@@ -116,7 +116,7 @@ if (!std::filesystem::exists(inputFile)) {
 
 ### Missing Branches
 * Warn the user but don't crash
-* Provide fallback logic (e.g., try `tightId` then `mediumId`)
+* Use `Muon_tightId` for muon identification
 
 ### ROOT Warnings
 * `Warning in <TClass::Init>: no dictionary for class edm::...` is **normal** for NanoAOD

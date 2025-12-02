@@ -20,7 +20,6 @@ The analysis uses `RDataFrame`. Column names follow the standard CMS NanoAOD nam
 | Mass | `Muon_mass` | `Float_t[]` | Muon mass (~0.105 GeV) |
 | Charge | `Muon_charge` | `Int_t[]` | +1 or -1 |
 | Tight ID | `Muon_tightId` | `Bool_t[]` | High-quality muon flag |
-| Medium ID | `Muon_mediumId` | `Bool_t[]` | Medium-quality muon flag |
 | PF Isolation | `Muon_pfRelIso04_all` | `Float_t[]` | Relative isolation (ΔR<0.4) |
 | Count | `nMuon` | `UInt_t` | Number of muons in event |
 
@@ -28,8 +27,7 @@ The analysis uses `RDataFrame`. Column names follow the standard CMS NanoAOD nam
 
 | Variable | Branch Name | Type | Description |
 |:---------|:------------|:-----|:------------|
-| Single Muon (24 GeV) | `HLT_IsoMu24` | `Bool_t` | Isolated muon trigger |
-| Single Muon (18 GeV) | `HLT_IsoMu18` | `Bool_t` | Lower threshold trigger |
+| Single Muon Trigger | `HLT_IsoMu18` | `Bool_t` | Isolated muon trigger (18 GeV threshold) |
 
 ### Jet Variables
 
@@ -50,7 +48,7 @@ tree = f["Events"]
 print("Available branches:", list(tree.keys())[:20])
 
 # Check specific branches
-for branch in ["Muon_tightId", "Muon_mediumId", "HLT_IsoMu24", "HLT_IsoMu18"]:
+for branch in ["Muon_tightId", "HLT_IsoMu18", "Muon_pt", "Muon_charge"]:
     if branch in tree.keys():
         print(f"  ✓ {branch} exists")
     else:
@@ -59,16 +57,14 @@ for branch in ["Muon_tightId", "Muon_mediumId", "HLT_IsoMu24", "HLT_IsoMu18"]:
 
 ### 2. Muon ID Selection
 
-Use ONE of these quality cuts (check which exists):
-- **Preferred:** `Muon_tightId` (stricter, cleaner sample)
-- **Alternative:** `Muon_mediumId` (more events, slightly more background)
+Use `Muon_tightId` for high-quality muon selection.
 
 ### 3. Trigger Selection
 
-The trigger path may vary. Use OR logic:
+Use the `HLT_IsoMu18` trigger:
 ```cpp
-// Check both triggers
-bool passTrigger = HLT_IsoMu24 || HLT_IsoMu18;
+// Filter on trigger
+df.Filter("HLT_IsoMu18", "Trigger selection")
 ```
 
 ### 4. Array Access in RDataFrame
