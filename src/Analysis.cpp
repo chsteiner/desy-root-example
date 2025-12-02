@@ -48,14 +48,8 @@ void DimuonAnalysis::run() {
 }
 
 ROOT::RDF::RNode DimuonAnalysis::applyTriggerSelection(ROOT::RDF::RNode df) {
-    // Check if trigger branches exist, then apply OR of HLT_IsoMu24 and HLT_IsoMu18
-    // NanoAOD stores triggers as Bool_t branches
-    auto triggered = df.Define("passTrigger",
-        [](Bool_t isoMu24, Bool_t isoMu18) {
-            return isoMu24 || isoMu18;
-        },
-        {"HLT_IsoMu24", "HLT_IsoMu18"}
-    ).Filter("passTrigger", "Trigger selection (HLT_IsoMu24 || HLT_IsoMu18)");
+    // Filter on HLT_IsoMu18 trigger
+    auto triggered = df.Filter("HLT_IsoMu18", "Trigger selection (HLT_IsoMu18)");
 
     return triggered;
 }

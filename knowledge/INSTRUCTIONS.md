@@ -69,8 +69,8 @@ print(f"\nAvailable branches ({len(tree.keys())} total):")
 # Check key branches
 key_branches = [
     "nMuon", "Muon_pt", "Muon_eta", "Muon_phi", "Muon_mass",
-    "Muon_charge", "Muon_tightId", "Muon_mediumId",
-    "Muon_pfRelIso04_all", "HLT_IsoMu24", "HLT_IsoMu18", "nJet"
+    "Muon_charge", "Muon_tightId", "Muon_pfRelIso04_all",
+    "HLT_IsoMu18", "nJet"
 ]
 
 for branch in key_branches:
@@ -119,7 +119,7 @@ Define:
 Implement the analysis chain using RDataFrame:
 
 1. **Trigger Selection**
-   - Filter on `HLT_IsoMu24 || HLT_IsoMu18`
+   - Filter on `HLT_IsoMu18`
 
 2. **Muon Quality Selection**
    - Define mask for good muons (pT, eta, ID, isolation)

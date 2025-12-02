@@ -11,12 +11,12 @@
 Apply these cuts in order:
 
 1. **Trigger:** Event must fire the Single Muon Trigger
-   - Use: `HLT_IsoMu24 || HLT_IsoMu18`
+   - Use: `HLT_IsoMu18`
 
 2. **Muon Quality:** Both muons must pass quality criteria
    - pT > 20 GeV
    - |η| < 2.4
-   - Pass `Muon_tightId` (or `Muon_mediumId` if tightId unavailable)
+   - Pass `Muon_tightId`
    - PF relative isolation < 0.15 (`Muon_pfRelIso04_all < 0.15`)
 
 3. **Dimuon Selection:**
